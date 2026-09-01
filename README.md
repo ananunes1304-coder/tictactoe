@@ -20,6 +20,20 @@ A implementação envolve dois componentes principais:
 
 - Utilizar diretivas de sincronização para garantir o acesso exclusivo ao tabuleiro durante a execução das jogadas e coordenar a alternância de turnos entre os dois jogadores. Você deve decidir quais diretivas usar para garantir o bom funcionamento do código!
 
+## Solução implementada
+
+A solução utiliza `std::mutex` para garantir acesso exclusivo ao estado do
+jogo e `std::condition_variable` para que cada jogador espere sua vez sem
+espera ocupada. As leituras e alterações de `board`, `current_player`,
+`game_over` e `winner` são realizadas sob proteção do mesmo mutex.
+
+### Compilação e execução
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic -pthread src/tic_tac_toe.cpp -o tictactoe.exe
+./tictactoe.exe
+```
+
 ## Pseudo Código da Solução
 
 ### Estrutura Geral do Código
@@ -86,4 +100,3 @@ Main:
 ## Crédito
 
 Este exercício foi adaptado a partir do trabalho elaborado pelo professor André Paim Lemos.
-
